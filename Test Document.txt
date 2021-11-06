@@ -1,0 +1,60 @@
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Unit Test 1: Set GPIO2 pin high(turn LED ON)
+
+Purpose: Test to ensure the function sets the gpio pin high 
+Pre-Conditions: 3V to esp8266-01, working LED
+Test Input: Conifgured GPIO2 pin, gpio pin set to 0, call 'gpio_on' function
+Expected: LED turns on 
+Test Results: LED turned on 
+Test Result Evidence: unit_test_1.png
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Unit Test 2: Set GPIO2 pin low(turn LED OFF)
+
+Purpose: Test to ensure the function sets the gpio pin low 
+Pre-Conditions: 3V to esp8266-01, working LED
+Test Input: Conifgured GPIO2 pin, gpio pin set to 1, call 'gpio_off' function
+Expected: LED turns off 
+Test Results: LED turned off 
+Test Result Evidence: unit_test_2.png
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Unit Test 3: Display of status message
+
+Purpose:  Test to ensure the function displays the  current status of the gpio pin
+Pre-Conditions: 3V to esp8266-01, working LED
+Test Input: Conifgured GPIO2 pin, gpio pin set to 0, call 'status_msg' function
+Expected: status of gpio pin is shown
+Test Results: status of gpio pin displayed
+Test Result Evidence: unit_test_3.png
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Integration Test: Integration of gpio_on, gpio_off and status_msg
+
+Purpose: Test to ensure the functions work sequentially 
+Pre-Conditions: 3V to esp8266-01, working LED
+Test Input: Conifgured GPIO2 pin, call gpio_on, call status_msg, call gpio_off
+Expected: LED light turns on, LED turns off and a status message is diplayed for each change of status
+Test Results: LED light turns on, LED turns off and a status message is diplayed for each change of status
+Test Result Evidence: Integration_Verification Test.txt
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Verification Test: Verifying the system meets the specified requirement
+
+Requirements/Specifications: 
+1. Turn the GPIO pin on, actively wait for 0.5 seconds, and task-delay for 1 second. 
+2. Turn the GPIO pin off, actively wait for 0.5 seconds, and task-delay for 1 second. 
+3. The GPIO pin should be managed using a semaphore/mutex. 
+4. The third task will print a status message only, and task-delay for 1 second. 
+5. Each task should have it's own priority level. 
+
+Purpose: To test the system to ensure it meets the requirements
+Test Input: Conifgured GPIO2 pin, call gpio_on, call status_msg, call gpio_off
+Expected: LED light turns on for 1.5s, status message is diplayed for 1s, LED light turns off for 1.5s, status message displayed for 1s
+Test Results: LED light turns on for 1.5s, status message is diplayed for 1s, LED light turns off for 1.5s, status message displayed for 1s
+Test Result Evidence: Integration_Verification Test.txt
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The verification test and integration test was done simultaneously as the requirements were set prior and implementation was done in order to result in meeting the requirments. The integration test only tested the functions and not the delays while the verification test tested the necessary delay times.
+
